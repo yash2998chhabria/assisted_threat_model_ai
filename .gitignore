@@ -1,0 +1,5 @@
+# Ignore all jsonl and graphml   output files
+*.jsonl
+*.graphml
+
+qa_code_context/test_repos/

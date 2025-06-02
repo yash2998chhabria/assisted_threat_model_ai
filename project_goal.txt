@@ -1,0 +1,15 @@
+User Upload
+    │
+File Content Detection (simple heuristics: frontend/backend/infra)
+    │
+Use Context-Specific Prompts
+    │
+LLM Parsing (Specialized JSON output per context)
+    │
+Semantic Syntax Tree (NetworkX graph)
+    │
+Node Embeddings (Vector Store)
+    │
+Threat Model Generator (LLM queries the Semantic Graph)
+    │
+Editable Web Interface (Threat model, QA, test cases)
