@@ -8,5 +8,6 @@ cst_search_prototype/debug_loading.ipynb
 cst_search_prototype/chroma_db
 cst_search_prototype/callum_to_vector_chunks
 cst_search_prototype/cst_outputs
+cst_search_prototype/vector_output
 
 qa_code_context
