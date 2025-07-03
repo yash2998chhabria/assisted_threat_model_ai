@@ -257,41 +257,8 @@ threat_model = generate_threat_model(attack_surface)
 - [ ] Web-based dashboard
 - [ ] Real-time monitoring
 
-## 🤝 Contributing
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
 
-### Development Setup
-```bash
-git clone https://github.com/your-repo/vulnerability-analysis
-cd vulnerability-analysis
-pip install -e .
-pre-commit install
-```
-
-### Running Tests
-```bash
-pytest tests/ -v
-coverage run -m pytest
-coverage report
-```
-
-## 📚 Documentation
-
-- [API Reference](docs/api.md)
-- [Architecture Deep Dive](docs/architecture.md)
-- [Vulnerability Patterns](docs/patterns.md)
-- [Performance Tuning](docs/performance.md)
-
-## 🐛 Known Issues
-
-- **Large File Handling**: Memory usage scales with file size (optimization planned)
-- **Language Coverage**: Some esoteric languages may have limited Tree-sitter support
-- **False Positives**: Static analysis inherently produces some false positives
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
