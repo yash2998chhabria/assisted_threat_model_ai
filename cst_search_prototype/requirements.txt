@@ -1,0 +1,34 @@
+# CST Parser and Vector RAG System Requirements
+
+# Core Tree-sitter
+tree-sitter
+
+# Programming Languages (standalone packages)
+tree-sitter-python
+tree-sitter-javascript
+tree-sitter-typescript
+tree-sitter-rust
+tree-sitter-go
+tree-sitter-cpp
+tree-sitter-java
+tree-sitter-c-sharp
+
+# Infrastructure & Configuration Languages
+tree-sitter-json
+tree-sitter-yaml
+tree-sitter-toml
+tree-sitter-dockerfile
+
+# Comprehensive language pack (includes HCL, Protocol Buffers, GraphQL, Thrift + 160+ languages)
+tree-sitter-language-pack
+
+# Dynamic Keyword Extraction (required for best performance)
+nltk
+scikit-learn
+
+# Vector Database and Embeddings
+chromadb
+sentence-transformers
+
+# Standard library dependencies
+numpy
