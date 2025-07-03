@@ -204,26 +204,6 @@ class VectorLoader:
         
         return successful_loads, failed_loads
     
-    def verify_load(self):
-        """Verify the loaded data"""
-        count = self.collection.count()
-        print(f"\n🔍 Verification:")
-        print(f"   📊 Total chunks in database: {count}")
-        
-        if count > 0:
-            # Test a sample query
-            sample = self.collection.get(limit=1, include=["metadatas", "embeddings"])
-            if sample["embeddings"]:
-                dims = len(sample["embeddings"][0])
-                print(f"   🔢 Embedding dimensions: {dims}")
-                print(f"   🤖 Model: {self.model_name}")
-                
-                # Show sample metadata
-                if sample["metadatas"]:
-                    meta = sample["metadatas"][0]
-                    print(f"   📝 Sample metadata fields: {list(meta.keys())}")
-        
-        return count
 
 
 def main():
@@ -266,7 +246,6 @@ def main():
     try:
         loader = VectorLoader(model_name=model_name, db_path=db_path)
         successful, failed = loader.load_chunks(chunks_file)
-        loader.verify_load()
         
         elapsed_time = time.time() - start_time
         print(f"\n⏱️ Total time: {elapsed_time:.2f} seconds")

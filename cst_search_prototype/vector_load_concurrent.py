@@ -364,38 +364,7 @@ class ConcurrentVectorLoader:
         
         return self.successful_loads, self.failed_loads
     
-    def verify_load(self):
-        """Verify the loaded data"""
-        count = self.collection.count()
-        print(f"\n🔍 Verification:")
-        print(f"   📊 Total chunks in database: {count}")
-        
-        if count > 0:
-            # Test a sample query
-            sample = self.collection.get(limit=1, include=["metadatas", "embeddings"])
-            if sample["embeddings"]:
-                dims = len(sample["embeddings"][0])
-                print(f"   🔢 Embedding dimensions: {dims}")
-                print(f"   🤖 Model: {self.model_name}")
-                
-                # Show sample metadata
-                if sample["metadatas"]:
-                    meta = sample["metadatas"][0]
-                    print(f"   📝 Sample metadata fields: {list(meta.keys())}")
-                    
-            # Test query performance
-            try:
-                start_time = time.time()
-                test_results = self.collection.query(
-                    query_texts=["test query"],
-                    n_results=5
-                )
-                query_time = time.time() - start_time
-                print(f"   ⚡ Query performance: {query_time:.3f}s for 5 results")
-            except Exception as e:
-                print(f"   ⚠️ Performance test failed: {e}")
-        
-        return count
+
 
 
 def main():
@@ -460,7 +429,6 @@ def main():
         )
         
         successful, failed = loader.load_chunks(chunks_file, storage_batch_size)
-        loader.verify_load()
         
         print(f"\n🎯 Ready for search! Use:")
         print(f"   python vector_search.py 'your query' --model={model_name} --db-path={db_path}")
