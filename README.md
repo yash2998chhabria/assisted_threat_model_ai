@@ -1,5 +1,8 @@
 # 🔍 Language-Agnostic Vulnerability Analysis Using CSTs, Chunks, and RAG
 
+[![Status](https://img.shields.io/badge/Status-Active%20Development-orange)](https://github.com/your-repo)
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://python.org)
+[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
 This project builds a static vulnerability analysis system that can parse any codebase into a Concrete Syntax Tree (CST), chunk the CST into semantically meaningful sections, embed them using sentence transformer models, and store them in a vector database. The system enables retrieval-augmented analysis (RAG) to identify security vulnerabilities — including taint flows from user-controlled sources to dangerous sinks — using both deterministic rules and LLM-based validation.
 
@@ -24,40 +27,40 @@ This project builds a static vulnerability analysis system that can parse any co
     │    CST    │
     └─────┬─────┘
           │
-┌─────────▼─────────┐
-│ Semantic Chunking │
-│   & Embedding     │
-└─────────┬─────────┘
-          │
-    ┌─────▼─────┐
-    │  Vector   │
-    │ Database  │
-    └─────┬─────┘
-          │
-┌─────────▼─────────┐
-│   Flow Analysis   │
-│ ┌───────────────┐ │
-│ │ Dataflow      │ │
-│ │ Call Graph    │ │
-│ │ Control Flow  │ │
-│ └───────────────┘ │
-└─────────┬─────────┘
-          │
-    ┌─────▼─────┐
-    │   Taint   │
-    │  Engine   │
-    └─────┬─────┘
-          │
-┌─────────▼─────────┐
-│ Sanitizer Checker │
-│ & LLM Validator   │
-└─────────┬─────────┘
-          │
-┌─────────▼─────────┐
-│ Vulnerability     │
-│ Report + Threat   │
-│ Model Graph       │
-└───────────────────┘
+          ├─────────────────────────────────────┐
+          │                                     │
+    ┌─────▼─────┐                         ┌─────▼─────┐
+    │   Code    │                         │ Semantic  │
+    │  Graphs   │                         │ Chunking  │
+    │ ┌───────┐ │                         │ & Embed   │
+    │ │ Call  │ │                         └─────┬─────┘
+    │ │ Data  │ │                               │
+    │ │ Ctrl  │ │                         ┌─────▼─────┐
+    │ └───────┘ │                         │  Vector   │
+    └─────┬─────┘                         │ Database  │
+          │                               └─────┬─────┘
+    ┌─────▼─────┐                               │
+    │   Taint   │                               │
+    │  Engine   │                               │
+    └─────┬─────┘                               │
+          │                                     │
+    ┌─────▼─────┐                               │
+    │ Sanitizer │                               │
+    │ Detection │                               │
+    └─────┬─────┘                               │
+          │                                     │
+          └─────────────────┬───────────────────┘
+                            │
+                      ┌─────▼─────┐
+                      │ LLM + RAG │
+                      │ Validator │
+                      └─────┬─────┘
+                            │
+                    ┌───────▼───────┐
+                    │ Vulnerability │
+                    │ Report + Threat│
+                    │ Model Graph    │
+                    └───────────────┘
 ```
 
 ## ✅ Current Status
@@ -106,28 +109,39 @@ This project builds a static vulnerability analysis system that can parse any co
 
 ### 🔴 Planned Components
 
+#### Code Graph Generator
+- **Purpose**: Build comprehensive program flow representation directly from CSTs
+- **Features**:
+  - Call graph construction from function declarations and invocations
+  - Dataflow graph tracking variable assignments and usage
+  - Control flow graph mapping execution paths
+  - Cross-file dependency analysis
+  - Performance-optimized graph data structures
+
 #### Taint Analysis Engine
-- **Purpose**: Track data flow from user inputs to dangerous operations
+- **Purpose**: Track data flow from user inputs to dangerous operations using code graphs
 - **Features**:
   - Source identification (user input, file I/O, network)
   - Sink detection (SQL queries, file operations, eval)
-  - Interprocedural taint propagation
-  - Path-sensitive analysis
-
-#### Call Graph & Dataflow Analysis
-- **Purpose**: Build comprehensive program flow representation
-- **Features**:
-  - Function call relationship mapping
-  - Variable dependency tracking
-  - Cross-file analysis support
-  - Performance-optimized graph structures
+  - Interprocedural taint propagation via call graphs
+  - Path-sensitive analysis using control flow graphs
+  - Graph-based taint path visualization
 
 #### Sanitizer Detection
-- **Purpose**: Identify security controls and validation functions
+- **Purpose**: Identify security controls and validation functions from code graphs
 - **Features**:
   - Static pattern matching for common sanitizers
+  - Graph-based sanitizer effectiveness analysis
+  - Taint neutralization point identification
   - LLM-assisted custom sanitizer identification
-  - Effectiveness scoring per sanitizer type
+
+#### Semantic Chunking & Vector Search
+- **Purpose**: Create searchable representations after graph analysis
+- **Features**:
+  - Graph-informed code chunking with flow context
+  - Taint-aware chunk embeddings
+  - Vulnerability pattern matching via vector similarity
+  - RAG-enhanced vulnerability explanation
 
 #### Threat Model Generator
 - **Purpose**: Create visual security impact assessments
@@ -223,17 +237,19 @@ threat_model = generate_threat_model(attack_surface)
 - [x] Vector search implementation
 - [x] Basic vulnerability pattern matching
 
-### Phase 2: Flow Analysis (🔄 In Progress)
-- [ ] Taint propagation engine
-- [ ] Call graph construction
-- [ ] Dataflow analysis
+### Phase 2: Code Graph Analysis (🔄 In Progress)
+- [ ] Call graph construction from CSTs
+- [ ] Dataflow graph generation
+- [ ] Control flow graph mapping
 - [ ] Cross-file dependency tracking
+- [ ] Graph-based taint propagation engine
 
 ### Phase 3: Advanced Analysis (📋 Planned)
-- [ ] Sanitizer detection and validation
-- [ ] LLM-assisted vulnerability classification
-- [ ] False positive reduction
-- [ ] Performance optimization
+- [ ] Graph-based sanitizer detection and validation
+- [ ] LLM-assisted vulnerability classification with graph context
+- [ ] Semantic chunking with flow-aware embeddings
+- [ ] Vector search for vulnerability patterns
+- [ ] False positive reduction using graph analysis
 
 ### Phase 4: Integration (🔮 Future)
 - [ ] IDE plugin development
