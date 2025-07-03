@@ -2,4 +2,11 @@
 *.jsonl
 *.graphml
 
-qa_code_context/test_repos/
+cst_projects/
+vvenv/
+cst_search_prototype/debug_loading.ipynb
+cst_search_prototype/chroma_db
+cst_search_prototype/callum_to_vector_chunks
+cst_search_prototype/cst_outputs
+
+qa_code_context
